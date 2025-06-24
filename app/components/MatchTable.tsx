@@ -1,4 +1,7 @@
 import useSWR from "swr";
+import Hero from "./Hero";
+import BattleSpell from "./BattleSpell";
+import Equipment from "./Equipment";
 
 type Fetcher = <T = any>(args: [string, RequestInit?]) => Promise<T>;
 
@@ -39,7 +42,6 @@ export default function MatchTable({ matchId }: { matchId: string; }) {
 	if (error) return <div>Error: {error.message}</div>
 	if (isLoading) return <div>Loading...</div>
 
-	console.log(data);
 	const player_list = data.data.battleData.player_list;
 
 	return (
@@ -53,6 +55,27 @@ export default function MatchTable({ matchId }: { matchId: string; }) {
 						<th>Death</th>
 						<th>Assist</th>
 						<th>Gold</th>
+						<th>Level</th>
+						<th>Hero damage (%)</th>
+						<th>Grade</th>
+						<th>Score</th>
+						<th>Damage taken</th>
+						<th>Tower damage</th>
+						<th>MVP</th>
+						<th>Tower damage (%)</th>
+						<th>Savage</th>
+						<th>Damage taken (%)</th>
+						<th>Hero</th>
+						<th>Tower destroyed</th>
+						<th>Maniac</th>
+						<th>Battle spell</th>
+						<th>Triple kill</th>
+						<th>Flag</th>
+						<th>Equipments</th>
+						<th>Damage</th>
+						<th>Double kill</th>
+						<th>Position</th>
+						<th>Team fight participation</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,6 +88,27 @@ export default function MatchTable({ matchId }: { matchId: string; }) {
 								<td>{player.dead_num}</td>
 								<td>{player.assist_num}</td>
 								<td>{player.gold_total}</td>
+								<td>{player.max_level}</td>
+								<td>{player.hero_hurt_rate}</td>
+								<td>{player.grade}</td>
+								<td>{player.score}</td>
+								<td>{player.hurted}</td>
+								<td>{player.tower_hurt}</td>
+								<td>{player.is_mvp}</td>
+								<td>{player.tower_hurt_rate}</td>
+								<td>{player.kill5_num}</td>
+								<td>{player.hurted_rate}</td>
+								<td><Hero id={player.heroid} /></td>
+								<td>{player.destroy_Tower_num}</td>
+								<td>{player.kill4_num}</td>
+								<td>{player.battle_skill_id}</td>
+								<td>{player.kill3_num}</td>
+								<td>{player.nationality}</td>
+								<td><Equipment list={player.equip_list} /></td>
+								<td>{player.hero_hurt}</td>
+								<td>{player.kill2_num}</td>
+								<td>{player.pos}</td>
+								<td>{player.fight_rate}</td>
 							</tr>
 						}
 					})}
